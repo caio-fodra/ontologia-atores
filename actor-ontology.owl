@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+]>
+
+<rdf:RDF xmlns="http://www.semanticweb.org/actor-ontology#"
+     xml:base="http://www.semanticweb.org/actor-ontology"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+
+  <!-- Classes -->
+  <owl:Class rdf:about="#Ator"/>
+  <owl:Class rdf:about="#Carreira"/>
+  <owl:Class rdf:about="#Personagem"/>
+  <owl:Class rdf:about="#Diretor"/>
+  <owl:Class rdf:about="#Premiacao"/>
+  <owl:Class rdf:about="#EstiloAtuacao"/>
+  <owl:Class rdf:about="#Filme"/>
+  <owl:Class rdf:about="#CategoriaPremiacao"/>
+
+  <!-- Propriedades de Objeto -->
+  <owl:ObjectProperty rdf:about="#atuouEm"/>
+  <owl:ObjectProperty rdf:about="#interpretouPersonagem"/>
+  <owl:ObjectProperty rdf:about="#recebeuPremiacao"/>
+  <owl:ObjectProperty rdf:about="#colaborouCom"/>
+
+  <!-- Propriedades de Dados -->
+  <owl:DatatypeProperty rdf:about="#nome"/>
+  <owl:DatatypeProperty rdf:about="#dataNascimento"/>
+  <owl:DatatypeProperty rdf:about="#nacionalidade"/>
+  <owl:DatatypeProperty rdf:about="#nomePersonagem"/>
+  <owl:DatatypeProperty rdf:about="#generoPersonagem"/>
+  <owl:DatatypeProperty rdf:about="#anoInterpretacao"/>
+  <owl:DatatypeProperty rdf:about="#nomePremiacao"/>
+  <owl:DatatypeProperty rdf:about="#anoPremiacao"/>
+
+  <!-- Indivíduos -->
+  <owl:NamedIndividual rdf:about="#TomHanks"/>
+  <owl:NamedIndividual rdf:about="#ForrestGump"/>
+  <owl:NamedIndividual rdf:about="#MelhorAtor"/>
+
+  <!-- Axiomas -->
+  <rdf:Description rdf:about="#TomHanks">
+    <rdf:type rdf:resource="#Ator"/>
+    <nome rdf:datatype="&xsd;string">Tom Hanks</nome>
+    <dataNascimento rdf:datatype="&xsd;date">1956-07-09</dataNascimento>
+    <nacionalidade rdf:datatype="&xsd;string">Americano</nacionalidade>
+    <atuouEm rdf:resource="#ForrestGump"/>
+    <recebeuPremiacao rdf:resource="#MelhorAtor"/>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="#ForrestGump">
+    <rdf:type rdf:resource="#Filme"/>
+    <nome rdf:datatype="&xsd;string">Forrest Gump</nome>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="#MelhorAtor">
+    <rdf:type rdf:resource="#CategoriaPremiacao"/>
+    <nome rdf:datatype="&xsd;string">Melhor Ator</nome>
+  </rdf:Description>
+
+  <!-- Restrição de Propriedade -->
+  <owl:Restriction>
+    <owl:onProperty rdf:resource="#anoPremiacao"/>
+    <owl:someValuesFrom rdf:resource="&xsd;gYear"/>
+  </owl:Restriction>
+
+  <!-- Hierarquia de classes -->
+  <rdf:Description rdf:about="#Carreira">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </rdf:Description>
+
+  <!-- Hierarquia de propriedades -->
+  <rdf:Description rdf:about="#atuouEm">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+
+  <!-- Domínios e intervalos -->
+  <rdf:Description rdf:about="#atuouEm">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdf:domain rdf:resource="#Ator"/>
+    <rdf:range rdf:resource="#Filme"/>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="#nome">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdf:domain rdf:resource="#Ator"/>
+    <rdf:range rdf:resource="&xsd;string"/>
+  </rdf:Description>
+
+  <!-- Outras relações e propriedades podem ser definidas da mesma maneira -->
+
+</rdf:RDF>
